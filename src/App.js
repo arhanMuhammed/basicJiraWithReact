@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "bulma/css/bulma.css";
+import { useContext, useEffect } from "react";
+import "./App.css";
+import CardList from "./components/cardList";
+import CreateTask from "./components/createTask";
+import Metods from "./context/metods";
 
 function App() {
+  const { getData } = useContext(Metods);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="notification is-primary">
+        <CreateTask />
+      </div>
+      <div>
+        <div>
+          <h2>GÖREVLER</h2>
+        </div>
+        <CardList />
+      </div>
     </div>
   );
 }
